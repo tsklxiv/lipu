@@ -2,7 +2,7 @@
 
 import m from 'mithril'
 import { fromUnixTime, format, formatDistance } from 'date-fns/fp'
-import { r, about_text, hostname, links } from './consts'
+import { r, aboutText, hostname, links } from './consts'
 import NavBar from './navbar'
 
 const get = (url) => m.request({ method: 'GET', url: url })
@@ -13,7 +13,7 @@ function About () {
     view: () => m('main', [
       NavBar(),
       m('hr'),
-      m('div', { class: 'about' }, m.trust(about_text))
+      m('div', { class: 'about' }, m.trust(aboutText))
     ])
   }
 }
@@ -23,33 +23,33 @@ function Main (link) {
   let submissions = []
   let page = 1
 
-  function inline_seperator () {
+  function inlineSeperator () {
     return m('span', ' | ')
   }
 
-  function next_page () {
+  function nextPage () {
     submissions = []
     page++
     START_FETCH_LIMIT += FETCH_LIMIT
-    fetch_ids()
-    fetch_submissions()
+    fetchIDs()
+    fetchSubmissions()
   }
 
-  function prev_page () {
+  function prevPage () {
     submissions = []
     page--
     START_FETCH_LIMIT -= FETCH_LIMIT
-    fetch_ids()
-    fetch_submissions()
+    fetchIDs()
+    fetchSubmissions()
   }
 
   // Copilot saves my day :D
-  function fetch_ids () { // Avoid conflict with fetch()
+  function fetchIDs () { // Avoid conflict with fetch()
     get(link).then(data => data.slice(START_FETCH_LIMIT, START_FETCH_LIMIT + FETCH_LIMIT).forEach(id => ids.push(id)))
   }
-  fetch_ids()
+  fetchIDs()
 
-  function fetch_submission (id) {
+  function fetchSubmission (id) {
     get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
       .then(data => {
         data.id = id
@@ -58,50 +58,50 @@ function Main (link) {
   }
 
   // Finally, a working solution!!!
-  function fetch_submissions () {
+  function fetchSubmissions () {
     while (ids.length !== 0) {
-      fetch_submission(ids[0])
+      fetchSubmission(ids[0])
       ids.shift()
     }
     console.log(submissions)
   }
 
-  function render_submission (submission) {
-    const user_url = `https://news.ycombinator.com/user?id=${submission.by}`
-    const comments_url = `https://news.ycombinator.com/item?id=${submission.id}`
-    const submission_time = fromUnixTime(submission.time)
+  function renderSubmission (submission) {
+    const userURL = `https://news.ycombinator.com/user?id=${submission.by}`
+    const commentsURL = `https://news.ycombinator.com/item?id=${submission.id}`
+    const submissionTime = fromUnixTime(submission.time)
 
     return m('div', { class: 'submission' }, [
-      m('a', { href: (!(submission.url) ? comments_url : submission.url), target: '_blank', class: 's-link' },
+      m('a', { href: (!(submission.url) ? commentsURL : submission.url), target: '_blank', class: 's-link' },
         m('span', { style: 'font-size: 1.25em' }, submission.title),
         m('span', { style: 'font-size: 0.8em' }, submission.url ? ` (${hostname(submission.url)})` : '')
       ),
       m('br'),
       m('span', { class: 's-info' }, [
         m('span', `${submission.score} points by `),
-        m('a', { href: user_url, class: 's-link', target: '_blank' }, submission.by),
-        inline_seperator(),
-        m('a', { href: comments_url, class: 's-link', target: '_blank' }, `${submission.descendants} comments`),
-        inline_seperator(),
-        m('span', `At ${format('p', submission_time)} (${formatDistance(submission_time, new Date(), { suffix: true })})`)
+        m('a', { href: userURL, class: 's-link', target: '_blank' }, submission.by),
+        inlineSeperator(),
+        m('a', { href: commentsURL, class: 's-link', target: '_blank' }, `${submission.descendants} comments`),
+        inlineSeperator(),
+        m('span', `At ${format('p', submissionTime)} (${formatDistance(submissionTime, new Date(), { suffix: true })})`)
       ])
     ])
   }
 
-  function render_submissions () {
-    return m('div', { class: 'submissions' }, submissions.map(render_submission))
+  function renderSubmissions () {
+    return m('div', { class: 'submissions' }, submissions.map(renderSubmission))
   }
 
   return {
     view: () => {
-      fetch_submissions()
+      fetchSubmissions()
       return m('main', [
         NavBar(),
         m('hr'),
         m('strong', `Page ${page}`),
-        render_submissions(),
-        m('button', { onclick: prev_page, disabled: page === 1 }, 'Previous'),
-        m('button', { onclick: next_page }, 'Next')
+        renderSubmissions(),
+        m('button', { onclick: prevPage, disabled: page === 1 }, 'Previous'),
+        m('button', { onclick: nextPage }, 'Next')
       ])
     }
   }
