@@ -20,6 +20,10 @@ function About () {
 
 function Main (link) {
   const ids = []
+  const fetchThings = () => {
+    fetchIDs()
+    fetchSubmissions()
+  }
   let submissions = []
   let page = 1
 
@@ -27,20 +31,23 @@ function Main (link) {
     return m('span', ' | ')
   }
 
+  /*
+   * I would be really happy if I could go to the next page and
+   * the previous page with a single function. But for some reason, it
+   * just doesn't work. For now, this is what works for me.
+  */
   function nextPage () {
     submissions = []
     page++
     START_FETCH_LIMIT += FETCH_LIMIT
-    fetchIDs()
-    fetchSubmissions()
+    fetchThings()
   }
 
   function prevPage () {
     submissions = []
     page--
     START_FETCH_LIMIT -= FETCH_LIMIT
-    fetchIDs()
-    fetchSubmissions()
+    fetchThings()
   }
 
   // Copilot saves my day :D
@@ -57,19 +64,21 @@ function Main (link) {
       })
   }
 
-  // Finally, a working solution!!!
+  // Finally, a working (and cool) solution!!!
   function fetchSubmissions () {
     while (ids.length !== 0) {
       fetchSubmission(ids[0])
       ids.shift()
     }
-    console.log(submissions)
+    // console.log(submissions)
   }
 
   function renderSubmission (submission) {
     const userURL = `https://news.ycombinator.com/user?id=${submission.by}`
     const commentsURL = `https://news.ycombinator.com/item?id=${submission.id}`
     const submissionTime = fromUnixTime(submission.time)
+    const formattedTime = format('p', submissionTime)
+    const timeDistance = formatDistance(submissionTime, new Date(), { suffix: true })
 
     return m('div', { class: 'submission' }, [
       m('a', { href: (!(submission.url) ? commentsURL : submission.url), target: '_blank', class: 's-link' },
@@ -83,7 +92,7 @@ function Main (link) {
         inlineSeperator(),
         m('a', { href: commentsURL, class: 's-link', target: '_blank' }, submission.type === 'job' ? `${submission.descendants} comments` : 'link'),
         inlineSeperator(),
-        m('span', `At ${format('p', submissionTime)} (${formatDistance(submissionTime, new Date(), { suffix: true })})`)
+        m('span', `At ${formattedTime} (${timeDistance})`)
       ])
     ])
   }
