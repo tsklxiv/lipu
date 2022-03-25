@@ -19,7 +19,9 @@ function About () {
 }
 
 function Main (link) {
-  const ids = []; let submissions = []; let page = 1
+  const ids = []
+  let submissions = []
+  let page = 1
 
   function inline_seperator () {
     return m('span', ' | ')
