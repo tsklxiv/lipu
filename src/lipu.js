@@ -81,7 +81,7 @@ function Main (link) {
         m('span', `${submission.score} points by `),
         m('a', { href: userURL, class: 's-link', target: '_blank' }, submission.by),
         inlineSeperator(),
-        submission.type === "job" ? m('a', { href: commentsURL, class: 's-link', target: '_blank' }, `${submission.descendants} comments`) : "",
+        m('a', { href: commentsURL, class: 's-link', target: '_blank' }, submission.type === 'job' ? `${submission.descendants} comments` : 'link'),
         inlineSeperator(),
         m('span', `At ${format('p', submissionTime)} (${formatDistance(submissionTime, new Date(), { suffix: true })})`)
       ])
