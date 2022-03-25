@@ -31,6 +31,7 @@
   "devDependencies": {
     "@size-limit/file": "^7.0.8",
     "@size-limit/preset-app": "^7.0.8",
+    "esbuild": "^0.14.27",
     "size-limit": "^7.0.8"
   }
 }
