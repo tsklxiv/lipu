@@ -7,7 +7,7 @@ function NavBar () {
     return m('li.navbar', elem)
   }
 
-  function part_right (elem) {
+  function partRight (elem) {
     return m('li.navbar-right', elem)
   }
 
@@ -17,7 +17,7 @@ function NavBar () {
     part(m('a', { href: '#!/ask' }, 'Ask')),
     part(m('a', { href: '#!/show' }, 'Show')),
     part(header),
-    part_right(m('a', { href: '#!/about' }, 'About'))
+    partRight(m('a', { href: '#!/about' }, 'About'))
   ])
 }
 

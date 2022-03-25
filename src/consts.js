@@ -3,7 +3,7 @@ import { marked } from 'marked'
 
 const r = document.body
 const hostname = (url) => new URL(url).hostname
-const about_text = marked(`
+const aboutText = marked(`
 # Lipu
 
 Lipu (means *document, text* in [Toki Pona](https://tokipona.org/)) is an alternative interface to Hacker News.
@@ -38,4 +38,4 @@ const links = {
   Show: 'https://hacker-news.firebaseio.com/v0/showstories.json'
 }
 
-export { r, hostname, about_text, header, links }
+export { r, hostname, aboutText, header, links }
