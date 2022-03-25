@@ -1,8 +1,9 @@
 /* consts.js - Constants */
+import { marked } from 'marked';
 
 const r = document.body;
 const hostname = (url) => new URL(url).hostname;
-const about_text = `
+const about_text = marked(`
 # Lipu
 
 Lipu (means *document, text* in [Toki Pona](https://tokipona.org/)) is an alternative interface to Hacker News.
@@ -28,7 +29,7 @@ Lipu uses these following libraries and programs to work properly:
 An open source project by [@HoangTuan110](https://github.com/HoangTuan110). Made in Vietnam.
 
 [Repo](https://github.com/HoangTuan110/lipu)
-`;
+`);
 const header = "A simple and clean unofficial alternative Hacker News interface";
 const links = {
 	"Top": "https://hacker-news.firebaseio.com/v0/topstories.json",

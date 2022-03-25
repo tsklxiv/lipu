@@ -1,7 +1,6 @@
 /* lipu.js - The main application */
 
 import m from "mithril";
-import { marked } from "marked";
 import { fromUnixTime, format, formatDistance } from "date-fns/fp";
 import { r, about_text, hostname, links } from "./consts";
 import NavBar from "./navbar";
@@ -14,7 +13,7 @@ function About() {
 		view: () => m("main", [
 			NavBar(),
 			m("hr"),
-			m("div", {class: "about"}, m.trust(marked(about_text)))
+			m("div", {class: "about"}, m.trust(about_text))
 		])
 	}
 }
