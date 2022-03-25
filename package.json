@@ -1,0 +1,36 @@
+{
+  "name": "lukin",
+  "version": "0.1",
+  "description": "An alternative Hacker News interface",
+  "main": "index.js",
+  "repository": "https://github.com/HoangTuan110/lipu",
+  "author": "Dang Hoang Tuan",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "date-fns": "^2.28.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "marked": "^4.0.12",
+    "mithril": "^2.0.4"
+  },
+  "size-limit": [
+    {
+      "limit": "35 kb",
+      "path": "dist/lipu.js"
+    }
+  ],
+  "scripts": {
+    "build": "esbuild --bundle src/lipu.js --outdir=dist --minify --sourcemap",
+    "lint": "eslint src/",
+    "size": "yarnpkg build && size-limit"
+  },
+  "devDependencies": {
+    "@size-limit/file": "^7.0.8",
+    "@size-limit/preset-app": "^7.0.8",
+    "size-limit": "^7.0.8"
+  }
+}
