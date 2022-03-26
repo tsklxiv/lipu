@@ -90,7 +90,7 @@ function Main (link) {
         m('span', `${submission.score} points by `),
         m('a', { href: userURL, class: 's-link', target: '_blank' }, submission.by),
         inlineSeperator(),
-        m('a', { href: commentsURL, class: 's-link', target: '_blank' }, submission.type === 'job' ? `${submission.descendants} comments` : 'link'),
+        m('a', { href: commentsURL, class: 's-link', target: '_blank' }, !(submission.type === 'job') ? `${submission.descendants} comments` : 'link'),
         inlineSeperator(),
         m('span', `At ${formattedTime} (${timeDistance})`)
       ])
