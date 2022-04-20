@@ -23,7 +23,7 @@ Lipu uses these following libraries and programs to work properly:
 
 # Other things
 - [Water.css](https://watercss.kognise.dev/) - Light theme (Classless CSS)
-- [Zilla Slab](https://fonts.google.com/specimen/Zilla+Slab) - Font used
+- [Lato](https://fonts.google.com/specimen/Lato) - Font used
 
 An open source project by [@HoangTuan110](https://github.com/HoangTuan110). Made in Vietnam.
 
