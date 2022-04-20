@@ -10,8 +10,10 @@ Lipu (means *document, text* in [Toki Pona](https://tokipona.org/)) is an altern
 
 Features:
 - Simple and clean
-- Load the submissions as the page loads
+- Dark theme by default
+- The submissions are loaded as the page loads
 - **Responsive** - Works on any device, of any screen size
+- **Pagination** - Loads more submissions when you reach the bottom of the page
 
 # Tech
 Lipu uses these following libraries and programs to work properly:
