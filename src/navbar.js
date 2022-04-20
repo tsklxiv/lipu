@@ -12,7 +12,7 @@ function NavBar () {
   }
 
   return m('ul.navbar', [
-    part(m('a', { href: '#!/' }, 'Lipu')),
+    part(m('a', { href: '#!/' }, 'Top')),
     part(m('a', { href: '#!/new' }, 'New')),
     part(m('a', { href: '#!/ask' }, 'Ask')),
     part(m('a', { href: '#!/show' }, 'Show')),
