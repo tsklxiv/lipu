@@ -81,7 +81,7 @@ function Main (link) {
     const timeDistance = formatDistance(submissionTime, new Date(), { suffix: true })
 
     return m('div', { class: 'submission' }, [
-      m('a', { href: (!(submission.url) ? commentsURL : submission.url), target: '_blank', class: 's-link' },
+      m('a', { href: (!(submission.url) ? commentsURL : submission.url), target: '_blank', class: 'titlelink' },
         m('span', { style: 'font-size: 1.25em' }, submission.title),
         m('span', { style: 'font-size: 0.8em' }, submission.url ? ` (${hostname(submission.url)})` : '')
       ),
