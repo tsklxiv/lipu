@@ -93,7 +93,8 @@ function Main (link) {
         m('a', { href: commentsURL, class: 's-link', target: '_blank' }, !(submission.type === 'job') ? `${submission.descendants} comments` : 'link'),
         inlineSeperator(),
         m('span', `At ${formattedTime} (${timeDistance})`)
-      ])
+      ]),
+      m("hr")
     ])
   }
 
