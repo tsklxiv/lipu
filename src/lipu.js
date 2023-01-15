@@ -94,7 +94,7 @@ function Main (link) {
         inlineSeperator(),
         m('span', `At ${formattedTime} (${timeDistance})`)
       ]),
-      m("hr")
+      m('hr')
     ])
   }
 
